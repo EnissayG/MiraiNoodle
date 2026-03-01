@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Redirection…</title>
+  <!-- Pour GitHub Pages : redirige vers l'app SPA pour que les liens directs (ex. /products) fonctionnent -->
+  <script type="text/javascript">
+    var base = '/MiraiNoodle';
+    var path = location.pathname;
+    if (path.indexOf(base) === 0) path = path.slice(base.length) || '/';
+    else path = '/';
+    location.replace(base + '/index.html?__redirect=' + encodeURIComponent(path));
+  </script>
+</head>
+<body>Redirection…</body>
+</html>
