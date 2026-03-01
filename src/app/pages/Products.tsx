@@ -35,17 +35,17 @@ export function Products() {
     {
       name: 'Ramen Classique',
       description: 'Les saveurs traditionnelles que vous connaissez et aimez',
-      image: 'https://images.unsplash.com/photo-1761125065373-05a8e2f85cd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN0YW50JTIwbm9vZGxlcyUyMHJhbWVuJTIwYm93bHxlbnwxfHx8fDE3NzIzMjQzNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_NISSIN_Content_Product_CN_Global_Original_SM_X1_0204_retouched_R1V1_3000x3000.jpg',
     },
     {
       name: 'Ramen Épicé',
       description: 'Pour ceux qui aiment un peu de piquant',
-      image: 'https://images.unsplash.com/photo-1733700469181-fc8edf9af33f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMG5vb2RsZSUyMGNvb2tpbmclMjBzdGVhbXxlbnwxfHx8fDE3NzIzMjQzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_Nissin_Content_Product_HS_BlazingHot_SM_X1_0090_retouched_R2V1_3000x3000.jpg',
     },
     {
       name: 'Options Variées',
       description: 'D\'autres saveurs pour varier les plaisirs',
-      image: 'https://images.unsplash.com/photo-1761125065373-05a8e2f85cd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnN0YW50JTIwbm9vZGxlcyUyMHJhbWVuJTIwYm93bHxlbnwxfHx8fDE3NzIzMjQzNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://images.seattletimes.com/wp-content/uploads/2021/09/Cup-Noodles-FM.jpg?d=2040x1224'
     },
   ];
 

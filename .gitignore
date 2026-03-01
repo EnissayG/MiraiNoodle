@@ -35,5 +35,5 @@ Thumbs.db
 # Optional
 .cache/
 
-
+# Pour eviter les fichiers video
 src/assets/*.mp4

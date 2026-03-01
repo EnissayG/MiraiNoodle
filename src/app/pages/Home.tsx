@@ -2,7 +2,7 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Zap, Clock, Utensils, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.png'; 
 
 export function Home() {
   const features = [
