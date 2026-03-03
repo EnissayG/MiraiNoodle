@@ -56,7 +56,7 @@ export function Home() {
         
         {/* Logo en Haut */}
         <motion.div 
-          className="absolute top-24 left-1/2 -translate-x-1/2 z-10"
+          className="absolute top-8 sm:top-10 left-1/2 -translate-x-1/2 z-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}

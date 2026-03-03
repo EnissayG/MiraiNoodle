@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import logo from '../../assets/logo.png';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,25 +26,20 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-white text-black sticky top-0 z-50 shadow-sm border-b border-gray-100">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-transparent text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" onClick={handleLinkClick}>
-            <img src={logo} alt="Mirai Ramen" className="h-12 w-auto" />
-          </Link>
-
-          {/* Desktop Navigation */}
+        <div className="flex justify-end items-center h-20">
+          {/* Desktop Navigation - only buttons */}
           <div className="hidden md:flex space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={handleLinkClick}
-                className={`px-6 py-2.5 rounded-xl transition-all font-semibold ${
+                className={`px-6 py-2.5 rounded-xl transition-all font-semibold backdrop-blur-lg ${
                   isActive(link.path)
                     ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    : 'bg-neutral-900/25 text-white hover:bg-neutral-900/40 border border-white/10 shadow-sm'
                 }`}
               >
                 {link.label}
@@ -53,9 +47,9 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (hamburger) - transparent, white icon */}
           <button
-            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="md:hidden p-2 text-white drop-shadow-[0_0_6px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -71,10 +65,10 @@ export function Navigation() {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-6 py-3 rounded-xl transition-all font-semibold ${
+                className={`block px-6 py-3 rounded-xl transition-all font-semibold backdrop-blur-lg ${
                   isActive(link.path)
-                    ? 'bg-red-600 text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
+                    : 'bg-neutral-900/25 text-white hover:bg-neutral-900/40 border border-white/10 shadow-sm'
                 }`}
               >
                 {link.label}
