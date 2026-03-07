@@ -2,63 +2,24 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Target, Users, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function About() {
+  const { t } = useLanguage();
   const values = [
-    {
-      icon: <Target className="w-12 h-12" />,
-      title: 'Accessibilité',
-      description: 'Rendre les repas rapides accessibles à tous, partout',
-      color: 'bg-red-600',
-    },
-    {
-      icon: <Users className="w-12 h-12" />,
-      title: 'Service Client',
-      description: 'À l\'écoute de nos clients pour améliorer notre service',
-      color: 'bg-yellow-400',
-    },
-    {
-      icon: <Clock className="w-12 h-12" />,
-      title: 'Disponibilité',
-      description: 'Toujours disponibles, 24 heures sur 24',
-      color: 'bg-red-600',
-    },
+    { icon: <Target className="w-12 h-12" />, title: t('about.value1Title'), description: t('about.value1Desc'), color: 'bg-red-600' },
+    { icon: <Users className="w-12 h-12" />, title: t('about.value2Title'), description: t('about.value2Desc'), color: 'bg-yellow-400' },
+    { icon: <Clock className="w-12 h-12" />, title: t('about.value3Title'), description: t('about.value3Desc'), color: 'bg-red-600' },
   ];
-
   const locations = [
-    {
-      name: 'Guy-Concordia',
-      address: 'Station de métro Guy-Concordia',
-      students: 'Université Concordia',
-      count: '1 machine',
-    },
-    {
-      name: 'UQAM - Pavillon Principal',
-      address: 'Campus principal UQAM',
-      students: 'Université du Québec à Montréal',
-      count: '1 machine',
-    },
-    {
-      name: 'UQAM - Campus',
-      address: 'Emplacement secondaire',
-      students: 'Université du Québec à Montréal',
-      count: '1 machine',
-    },
+    { name: 'Guy-Concordia', address: t('about.location1Address'), students: t('about.location1Students'), count: t('about.location1Count') },
+    { name: 'UQAM - Pavillon Principal', address: t('about.location2Address'), students: t('about.location2Students'), count: t('about.location2Count') },
+    { name: 'UQAM - Campus', address: t('about.location3Address'), students: t('about.location3Students'), count: t('about.location3Count') },
   ];
-
   const benefits = [
-    {
-      title: 'Rapide et Pratique',
-      description: 'Nos distributeurs sont conçus pour les moments où vous avez faim mais peu de temps. En quelques minutes, vous avez votre repas prêt.',
-    },
-    {
-      title: 'Accessible 24/7',
-      description: 'Que ce soit tôt le matin ou tard le soir, nos machines sont toujours disponibles pour répondre à vos besoins alimentaires.',
-    },
-    {
-      title: 'Prix Abordable',
-      description: 'Nous comprenons le budget des étudiants. Nos nouilles instantanées offrent un excellent rapport qualité-prix.',
-    },
+    { title: t('about.benefit1Title'), description: t('about.benefit1Desc') },
+    { title: t('about.benefit2Title'), description: t('about.benefit2Desc') },
+    { title: t('about.benefit3Title'), description: t('about.benefit3Desc') },
   ];
 
   return (
@@ -87,14 +48,13 @@ export function About() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-            Notre Histoire
+            {t('about.badge')}
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black">
-            À Propos de <span className="text-red-600">Mirai Ramen</span>
+            {t('about.heroTitle')} <span className="text-red-600">{t('about.heroTitle2')}</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
-            Un service de distributeurs automatiques de nouilles instantanées 
-            pour les étudiants et professionnels de Montréal.
+            {t('about.heroSubtitle')}
           </p>
         </motion.div>
       </section>
@@ -118,26 +78,16 @@ export function About() {
               transition={{ duration: 0.6 }}
             >
               <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-                Notre Mission
+                {t('about.missionBadge')}
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
-                Notre <span className="text-red-600">Mission</span>
+                {t('about.missionTitle')} <span className="text-red-600">{t('about.missionTitle2')}</span>
               </h2>
               <div className="space-y-6 text-xl text-gray-600 leading-relaxed">
+                <p>{t('about.missionP1')}</p>
+                <p>{t('about.missionP2')}</p>
                 <p>
-                  Mirai Ramen est né d'une idée simple : offrir aux étudiants et 
-                  professionnels de Montréal un accès facile à des repas rapides 
-                  et délicieux, disponibles à toute heure.
-                </p>
-                <p>
-                  Nous installons nos distributeurs automatiques de nouilles instantanées 
-                  dans des emplacements stratégiques sur les campus universitaires pour répondre 
-                  aux besoins des étudiants qui cherchent un repas rapide entre deux cours.
-                </p>
-                <p>
-                  Actuellement, nous comptons <span className="font-bold text-black">3-4 machines</span> réparties 
-                  entre Guy-Concordia et l'UQAM, et nous continuons d'explorer de nouveaux 
-                  emplacements pour mieux vous servir.
+                  {t('about.missionP3')} <span className="font-bold text-black">{t('about.missionP3Bold')}</span> {t('about.missionP3End')}
                 </p>
               </div>
             </motion.div>
@@ -177,13 +127,13 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-yellow-50 text-yellow-700 px-5 py-2.5 rounded-full font-semibold">
-              Où Nous Trouver
+              {t('about.locationsBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Nos <span className="text-red-600">Emplacements</span>
+              {t('about.locationsTitle')} <span className="text-red-600">{t('about.locationsTitle2')}</span>
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Trouvez nos distributeurs Mirai Ramen dans ces emplacements à Montréal
+              {t('about.locationsSubtitle')}
             </p>
           </motion.div>
 
@@ -223,7 +173,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="inline-block bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg">
-              Bientôt : De nouveaux emplacements à venir
+              {t('about.comingSoon')}
             </div>
           </motion.div>
         </div>
@@ -240,13 +190,13 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-              Nos Principes
+              {t('about.valuesBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Nos <span className="text-red-600">Valeurs</span>
+              {t('about.valuesTitle')} <span className="text-red-600">{t('about.valuesTitle2')}</span>
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ce qui guide notre travail au quotidien
+              {t('about.valuesSubtitle')}
             </p>
           </motion.div>
 
@@ -283,10 +233,10 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-yellow-50 text-yellow-700 px-5 py-2.5 rounded-full font-semibold">
-              Nos Avantages
+              {t('about.benefitsBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Pourquoi <span className="text-red-600">Mirai Ramen</span> ?
+              {t('about.benefitsTitle')} <span className="text-red-600">{t('about.benefitsTitle2')}</span>
             </h2>
           </motion.div>
           
@@ -324,16 +274,16 @@ export function About() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Vous Voulez un Distributeur ?
+            {t('about.ctaTitle')}
           </h2>
           <p className="text-xl sm:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed">
-            Votre emplacement serait idéal ? Contactez-nous pour installer un distributeur Mirai Ramen chez vous.
+            {t('about.ctaSubtitle')}
           </p>
           <Link
             to="/contact"
             className="inline-block bg-white text-red-600 px-12 py-6 rounded-xl hover:bg-gray-50 transition-all text-xl font-bold shadow-2xl hover:-translate-y-1"
           >
-            Demander un Service
+            {t('about.ctaButton')}
           </Link>
         </motion.div>
       </section>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,7 +45,7 @@ export function Contact() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: payload.toString(),
       });
-      if (!res.ok) throw new Error('Erreur lors de l\'envoi');
+      if (!res.ok) throw new Error(t('contact.errorSend'));
       setSubmitted(true);
       setFormData({
         name: '',
@@ -55,29 +57,17 @@ export function Contact() {
       });
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Une erreur est survenue.');
+      setError(err instanceof Error ? err.message : t('contact.errorGeneric'));
     } finally {
       setSubmitting(false);
     }
   };
 
   const faqs = [
-    {
-      question: 'Comment utiliser les distributeurs Mirai Ramen ?',
-      answer: 'C\'est très simple ! Sélectionnez vos nouilles sur l\'écran tactile, effectuez le paiement par carte, et récupérez vos nouilles avec l\'eau chaude fournie.',
-    },
-    {
-      question: 'Quels modes de paiement acceptez-vous ?',
-      answer: 'Nos machines acceptent les cartes de crédit, débit et les paiements sans contact (Apple Pay, Google Pay, etc.).',
-    },
-    {
-      question: 'Où sont situés vos distributeurs ?',
-      answer: 'Nous avons actuellement 3-4 machines : une à Guy-Concordia et deux à l\'UQAM. Consultez notre page "À Propos" pour les emplacements précis.',
-    },
-    {
-      question: 'Comment obtenir un distributeur dans mon établissement ?',
-      answer: 'Nous installons nos distributeurs dans des lieux à fort passage. Utilisez le formulaire ci-dessus pour nous parler de votre emplacement.',
-    },
+    { question: t('contact.faq1Q'), answer: t('contact.faq1A') },
+    { question: t('contact.faq2Q'), answer: t('contact.faq2A') },
+    { question: t('contact.faq3Q'), answer: t('contact.faq3A') },
+    { question: t('contact.faq4Q'), answer: t('contact.faq4A') },
   ];
 
   return (
@@ -107,13 +97,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-            Parlons Ensemble
+            {t('contact.badge')}
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black">
-            <span className="text-red-600">Contactez</span> Nous
+            <span className="text-red-600">{t('contact.heroTitle')}</span> {t('contact.heroTitle2')}
           </h1>
           <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
-            Une question ? Vous voulez un distributeur ? Nous sommes à votre écoute.
+            {t('contact.heroSubtitle')}
           </p>
         </motion.div>
       </section>
@@ -139,10 +129,10 @@ export function Contact() {
             >
               <div className="space-y-6">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
-                  Informations de Contact
+                  {t('contact.infoTitle')}
                 </h2>
                 <p className="text-gray-600 text-xl leading-relaxed">
-                  Nous sommes là pour répondre à toutes vos questions.
+                  {t('contact.infoSubtitle')}
                 </p>
               </div>
               
@@ -156,9 +146,9 @@ export function Contact() {
                       <Phone className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-black mb-2 text-xl">Téléphone</h3>
+                      <h3 className="font-bold text-black mb-2 text-xl">{t('contact.phone')}</h3>
                       <p className="text-gray-600 text-lg">+1 (514) 123-4567</p>
-                      <p className="text-gray-500 mt-1">Lun-Ven 9h-18h</p>
+                      <p className="text-gray-500 mt-1">{t('contact.phoneHours')}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -172,7 +162,7 @@ export function Contact() {
                       <Mail className="w-8 h-8 text-black" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-black mb-2 text-xl">Courriel</h3>
+                      <h3 className="font-bold text-black mb-2 text-xl">{t('contact.email')}</h3>
                       <p className="text-gray-600 text-lg break-all">info@mirairamen.com</p>
                       <p className="text-gray-600 text-lg break-all">support@mirairamen.com</p>
                     </div>
@@ -188,10 +178,8 @@ export function Contact() {
                       <MapPin className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-black mb-2 text-xl">Emplacements</h3>
-                      <p className="text-gray-600 text-lg">Guy-Concordia</p>
-                      <p className="text-gray-600 text-lg">UQAM (2 emplacements)</p>
-                      <p className="text-gray-600 text-lg">Montréal, QC</p>
+                    <h3 className="font-bold text-black mb-2 text-xl">{t('contact.locations')}</h3>
+                    <p className="text-gray-600 text-lg">{t('contact.locationsList')}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -200,11 +188,10 @@ export function Contact() {
               <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl">
                 <div className="flex items-start space-x-4 mb-4">
                   <MessageCircle className="w-7 h-7 mt-1 flex-shrink-0" />
-                  <h3 className="text-2xl font-bold">Réponse Rapide</h3>
+                  <h3 className="text-2xl font-bold">{t('contact.quickResponse')}</h3>
                 </div>
                 <p className="text-white/95 text-lg leading-relaxed">
-                  Nous répondons généralement aux demandes dans les 24 heures. 
-                  Pour les urgences, appelez-nous directement.
+                  {t('contact.quickResponseDesc')}
                 </p>
               </div>
             </motion.div>
@@ -220,10 +207,10 @@ export function Contact() {
               <div className="bg-white rounded-3xl shadow-2xl p-10 sm:p-12 lg:p-14">
                 <div className="mb-10 space-y-4">
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
-                    Envoyez-nous un Message
+                    {t('contact.formTitle')}
                   </h2>
                   <p className="text-gray-600 text-xl leading-relaxed">
-                    Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.
+                    {t('contact.formSubtitle')}
                   </p>
                 </div>
                 
@@ -237,9 +224,9 @@ export function Contact() {
                     <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
                       <Send className="w-12 h-12 text-white" />
                     </div>
-                    <h3 className="text-4xl font-bold text-green-700 mb-4">Merci !</h3>
+                    <h3 className="text-4xl font-bold text-green-700 mb-4">{t('contact.successTitle')}</h3>
                     <p className="text-gray-600 text-xl leading-relaxed">
-                      Votre message a été envoyé avec succès. Nous vous répondrons bientôt.
+                      {t('contact.successMessage')}
                     </p>
                   </motion.div>
                 ) : (
@@ -254,7 +241,7 @@ export function Contact() {
                     <input type="hidden" name="form-name" value="contact" />
                     <p className="hidden" aria-hidden="true">
                       <label>
-                        Ne pas remplir : <input name="bot-field" value={formData['bot-field']} onChange={handleChange} />
+                        {t('contact.honeypotLabel')} <input name="bot-field" value={formData['bot-field']} onChange={handleChange} />
                       </label>
                     </p>
                     {error && (
@@ -265,7 +252,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
                         <label htmlFor="name" className="block font-bold text-gray-700 mb-3 text-lg">
-                          Nom Complet *
+                          {t('contact.nameLabel')}
                         </label>
                         <input
                           type="text"
@@ -275,13 +262,13 @@ export function Contact() {
                           value={formData.name}
                           onChange={handleChange}
                           className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none transition-all text-lg"
-                          placeholder="Jean Dupont"
+                          placeholder={t('contact.namePlaceholder')}
                         />
                       </div>
 
                       <div>
                         <label htmlFor="email" className="block font-bold text-gray-700 mb-3 text-lg">
-                          Adresse Courriel *
+                          {t('contact.emailLabel')}
                         </label>
                         <input
                           type="email"
@@ -291,7 +278,7 @@ export function Contact() {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none transition-all text-lg"
-                          placeholder="jean@exemple.com"
+                          placeholder={t('contact.emailPlaceholder')}
                         />
                       </div>
                     </div>
@@ -299,7 +286,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
                         <label htmlFor="phone" className="block font-bold text-gray-700 mb-3 text-lg">
-                          Numéro de Téléphone
+                          {t('contact.phoneLabel')}
                         </label>
                         <input
                           type="tel"
@@ -308,13 +295,13 @@ export function Contact() {
                           value={formData.phone}
                           onChange={handleChange}
                           className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none transition-all text-lg"
-                          placeholder="+1 (514) 123-4567"
+                          placeholder={t('contact.phonePlaceholder')}
                         />
                       </div>
 
                       <div>
                         <label htmlFor="subject" className="block font-bold text-gray-700 mb-3 text-lg">
-                          Sujet *
+                          {t('contact.subjectLabel')}
                         </label>
                         <select
                           id="subject"
@@ -324,19 +311,19 @@ export function Contact() {
                           onChange={handleChange}
                           className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none transition-all text-lg"
                         >
-                          <option value="">Sélectionnez un sujet</option>
-                          <option value="question">Question générale</option>
-                          <option value="machine">Problème avec une machine</option>
-                          <option value="location">Demande d'installation</option>
-                          <option value="partnership">Partenariat</option>
-                          <option value="other">Autre</option>
+                          <option value="">{t('contact.subjectPlaceholder')}</option>
+                          <option value="question">{t('contact.subjectQuestion')}</option>
+                          <option value="machine">{t('contact.subjectMachine')}</option>
+                          <option value="location">{t('contact.subjectLocation')}</option>
+                          <option value="partnership">{t('contact.subjectPartnership')}</option>
+                          <option value="other">{t('contact.subjectOther')}</option>
                         </select>
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block font-bold text-gray-700 mb-3 text-lg">
-                        Message *
+                        {t('contact.messageLabel')}
                       </label>
                       <textarea
                         id="message"
@@ -346,7 +333,7 @@ export function Contact() {
                         onChange={handleChange}
                         rows={6}
                         className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none transition-all resize-none text-lg"
-                        placeholder="Parlez-nous de votre demande..."
+                        placeholder={t('contact.messagePlaceholder')}
                       />
                     </div>
 
@@ -355,12 +342,12 @@ export function Contact() {
                       disabled={submitting}
                       className="w-full bg-red-600 text-white py-6 rounded-xl hover:bg-red-700 transition-all text-xl font-bold shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 flex items-center justify-center space-x-3 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                     >
-                      <span>{submitting ? 'Envoi en cours...' : 'Envoyer le Message'}</span>
+                      <span>{submitting ? t('contact.submitting') : t('contact.submit')}</span>
                       <Send className="w-6 h-6" />
                     </button>
 
                     <p className="text-gray-500 text-center text-lg">
-                      * Champs obligatoires
+                      {t('contact.requiredFields')}
                     </p>
                   </form>
                 )}
@@ -388,13 +375,13 @@ export function Contact() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-yellow-50 text-yellow-700 px-5 py-2.5 rounded-full font-semibold">
-              FAQ
+              {t('contact.faqBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Questions <span className="text-red-600">Fréquentes</span>
+              {t('contact.faqTitle')} <span className="text-red-600">{t('contact.faqTitle2')}</span>
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Trouvez rapidement les réponses à vos questions
+              {t('contact.faqSubtitle')}
             </p>
           </motion.div>
 

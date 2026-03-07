@@ -2,37 +2,21 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Zap, Clock, Utensils, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import logo from '../../assets/logo.png'; 
+import logo from '../../assets/logo.png';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Home() {
+  const { t } = useLanguage();
   const features = [
-    {
-      icon: <Zap className="w-10 h-10 text-red-600" />,
-      title: 'Rapide et Pratique',
-      description: 'Nouilles instantanées prêtes en quelques minutes',
-    },
-    {
-      icon: <Clock className="w-10 h-10 text-red-600" />,
-      title: 'Disponible 24/7',
-      description: 'Accessible à tout moment, jour et nuit',
-    },
-    {
-      icon: <Utensils className="w-10 h-10 text-red-600" />,
-      title: 'Saveurs Variées',
-      description: 'Plusieurs options de nouilles délicieuses',
-    },
+    { icon: <Zap className="w-10 h-10 text-red-600" />, title: t('home.feature1Title'), description: t('home.feature1Desc') },
+    { icon: <Clock className="w-10 h-10 text-red-600" />, title: t('home.feature2Title'), description: t('home.feature2Desc') },
+    { icon: <Utensils className="w-10 h-10 text-red-600" />, title: t('home.feature3Title'), description: t('home.feature3Desc') },
   ];
-
   const locations = [
-    {
-      name: 'Guy-Concordia',
-      details: 'Station de métro Guy-Concordia',
-    },
-    {
-      name: 'UQAM Campus',
-      details: '2 emplacements disponibles',
-    },
+    { name: 'Guy-Concordia', details: t('home.location1Details') },
+    { name: 'UQAM Campus', details: t('home.location2Details') },
   ];
+  const qualityBullets = [t('home.quality1'), t('home.quality2'), t('home.quality3')];
 
   return (
     <div className="overflow-hidden">
@@ -72,13 +56,12 @@ export function Home() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         >
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-white">
-            Des Nouilles
-            <span className="block text-red-600 mt-3">Instantanées</span>
-            <span className="block text-yellow-400 mt-3">24/7</span>
+            {t('home.heroTitle1')}
+            <span className="block text-red-600 mt-3">{t('home.heroTitle2')}</span>
+            <span className="block text-yellow-400 mt-3">{t('home.heroTitle3')}</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed max-w-xl mx-auto">
-            Découvrez nos distributeurs automatiques de ramen. 
-            Délicieux, rapide et toujours disponible sur les campus de Montréal.
+            {t('home.heroSubtitle')}
           </p>
         </motion.div>
       </section>
@@ -108,11 +91,10 @@ export function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Pourquoi <span className="text-red-600">Mirai Ramen</span> ?
+              {t('home.whyTitle')} <span className="text-red-600">Mirai Ramen</span> ?
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Une solution pratique pour un repas rapide et délicieux, 
-              parfaite pour les étudiants et professionnels pressés.
+              {t('home.whySubtitle')}
             </p>
           </motion.div>
 
@@ -164,13 +146,13 @@ export function Home() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-yellow-50 text-yellow-700 px-5 py-2.5 rounded-full font-semibold">
-              Nos Emplacements
+              {t('home.locationsBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Trouvez-Nous à <span className="text-red-600">Montréal</span>
+              {t('home.findUsTitle')} <span className="text-red-600">Montréal</span>
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Nos distributeurs sont situés dans les endroits les plus fréquentés
+              {t('home.findUsSubtitle')}
             </p>
           </motion.div>
 
@@ -222,22 +204,16 @@ export function Home() {
               transition={{ duration: 0.6 }}
             >
               <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-                Qualité Supérieure
+                {t('home.qualityBadge')}
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
-                Des Nouilles <span className="text-red-600">de Qualité</span>
+                {t('home.qualityTitle')} <span className="text-red-600">{t('home.qualityTitle2')}</span>
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Nos distributeurs proposent une sélection de nouilles instantanées 
-                soigneusement choisies. Prêt en quelques minutes pour satisfaire 
-                votre faim rapidement.
+                {t('home.qualityDesc')}
               </p>
               <div className="space-y-6 pt-4">
-                {[
-                  'Plusieurs saveurs disponibles',
-                  'Préparation rapide et facile',
-                  'Prix abordable pour les étudiants'
-                ].map((item, index) => (
+                {qualityBullets.map((item, index) => (
                   <motion.div 
                     key={index} 
                     className="flex items-start group"
@@ -273,16 +249,16 @@ export function Home() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Une Question ou Une Suggestion ?
+            {t('home.ctaTitle')}
           </h2>
           <p className="text-xl sm:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed">
-            N'hésitez pas à nous contacter pour toute information sur nos distributeurs.
+            {t('home.ctaSubtitle')}
           </p>
           <Link
             to="/contact"
             className="inline-block bg-white text-red-600 px-12 py-6 rounded-xl hover:bg-gray-50 transition-all text-xl font-bold shadow-2xl hover:shadow-3xl hover:-translate-y-1"
           >
-            Contactez-Nous
+            {t('home.ctaButton')}
           </Link>
         </motion.div>
       </section>

@@ -1,21 +1,22 @@
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t, locale, setLocale } = useLanguage();
 
-  // Scroll to top when location changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
   const navLinks = [
-    { path: '/', label: 'Accueil' },
-    { path: '/products', label: 'Nos Machines' },
-    { path: '/about', label: 'À Propos' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/', label: t('nav.home') },
+    { path: '/products', label: t('nav.products') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contact', label: t('nav.contact') },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -29,8 +30,22 @@ export function Navigation() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-transparent text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-end items-center h-20">
-          {/* Desktop Navigation - only buttons */}
-          <div className="hidden md:flex space-x-2">
+          {/* Language switcher + Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-3">
+            <div className="flex rounded-lg overflow-hidden border border-white/20 bg-white/5">
+              {(['fr', 'en'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLocale(lang)}
+                  className={`px-3 py-1.5 text-sm font-semibold transition-colors ${locale === lang ? 'bg-red-600 text-white' : 'text-white/90 hover:bg-white/10'}`}
+                  aria-label={lang === 'fr' ? 'Français' : 'English'}
+                >
+                  {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <div className="flex space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -45,13 +60,14 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
+            </div>
           </div>
 
           {/* Mobile Menu Button (hamburger) - transparent, white icon */}
           <button
             className="md:hidden p-2 text-white drop-shadow-[0_0_6px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label={t('nav.toggleMenu')}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -60,6 +76,19 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-2">
+            <div className="flex rounded-lg overflow-hidden border border-white/20 bg-white/5 w-fit mb-2">
+              {(['fr', 'en'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLocale(lang)}
+                  className={`px-3 py-2 text-sm font-semibold transition-colors ${locale === lang ? 'bg-red-600 text-white' : 'text-white/90 hover:bg-white/10'}`}
+                  aria-label={lang === 'fr' ? 'Français' : 'English'}
+                >
+                  {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.path}

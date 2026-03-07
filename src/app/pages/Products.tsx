@@ -2,51 +2,26 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Wifi, CreditCard, Thermometer, Package } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Products() {
+  const { t } = useLanguage();
   const specs = [
-    {
-      icon: <Package className="w-10 h-10" />,
-      title: 'Variété de Produits',
-      description: 'Plusieurs saveurs de nouilles instantanées disponibles',
-      color: 'bg-red-600',
-    },
-    {
-      icon: <CreditCard className="w-10 h-10" />,
-      title: 'Paiement Facile',
-      description: 'Accepte cartes bancaires et paiements mobiles',
-      color: 'bg-yellow-400',
-    },
-    {
-      icon: <Thermometer className="w-10 h-10" />,
-      title: 'Eau Chaude',
-      description: 'Eau chaude fournie pour une préparation instantanée',
-      color: 'bg-red-600',
-    },
-    {
-      icon: <Wifi className="w-10 h-10" />,
-      title: 'Disponibilité 24/7',
-      description: 'Accessible à toute heure du jour et de la nuit',
-      color: 'bg-yellow-400',
-    },
+    { icon: <Package className="w-10 h-10" />, title: t('products.spec1Title'), description: t('products.spec1Desc'), color: 'bg-red-600' },
+    { icon: <CreditCard className="w-10 h-10" />, title: t('products.spec2Title'), description: t('products.spec2Desc'), color: 'bg-yellow-400' },
+    { icon: <Thermometer className="w-10 h-10" />, title: t('products.spec3Title'), description: t('products.spec3Desc'), color: 'bg-red-600' },
+    { icon: <Wifi className="w-10 h-10" />, title: t('products.spec4Title'), description: t('products.spec4Desc'), color: 'bg-yellow-400' },
   ];
-
   const products = [
-    {
-      name: 'Ramen Classique',
-      description: 'Les saveurs traditionnelles que vous connaissez et aimez',
-      image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_NISSIN_Content_Product_CN_Global_Original_SM_X1_0204_retouched_R1V1_3000x3000.jpg',
-    },
-    {
-      name: 'Ramen Épicé',
-      description: 'Pour ceux qui aiment un peu de piquant',
-      image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_Nissin_Content_Product_HS_BlazingHot_SM_X1_0090_retouched_R2V1_3000x3000.jpg',
-    },
-    {
-      name: 'Options Variées',
-      description: 'D\'autres saveurs pour varier les plaisirs',
-      image: 'https://images.seattletimes.com/wp-content/uploads/2021/09/Cup-Noodles-FM.jpg?d=2040x1224'
-    },
+    { name: t('products.product1Name'), description: t('products.product1Desc'), image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_NISSIN_Content_Product_CN_Global_Original_SM_X1_0204_retouched_R1V1_3000x3000.jpg' },
+    { name: t('products.product2Name'), description: t('products.product2Desc'), image: 'https://www.nissinfoods.com/wp-content/uploads/2023/03/23_Nissin_Content_Product_HS_BlazingHot_SM_X1_0090_retouched_R2V1_3000x3000.jpg' },
+    { name: t('products.product3Name'), description: t('products.product3Desc'), image: 'https://images.seattletimes.com/wp-content/uploads/2021/09/Cup-Noodles-FM.jpg?d=2040x1224' },
+  ];
+  const machineFeatures = [
+    { title: t('products.feature1Title'), desc: t('products.feature1Desc') },
+    { title: t('products.feature2Title'), desc: t('products.feature2Desc') },
+    { title: t('products.feature3Title'), desc: t('products.feature3Desc') },
+    { title: t('products.feature4Title'), desc: t('products.feature4Desc') },
   ];
 
   return (
@@ -76,14 +51,13 @@ export function Products() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-            Technologie Moderne
+            {t('products.badge')}
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black">
-            Nos <span className="text-red-600">Machines</span>
+            {t('products.heroTitle')} <span className="text-red-600">{t('products.heroTitle2')}</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Des distributeurs automatiques modernes pour des nouilles instantanées 
-            de qualité, disponibles partout à Montréal.
+            {t('products.heroSubtitle')}
           </p>
         </motion.div>
       </section>
@@ -121,23 +95,16 @@ export function Products() {
               transition={{ duration: 0.6 }}
             >
               <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-                Distributeur Automatique
+                {t('products.sectionBadge')}
               </div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
-                Distributeur <span className="text-red-600">Mirai Ramen</span>
+                {t('products.sectionTitle')} <span className="text-red-600">{t('products.sectionTitle2')}</span>
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Nos distributeurs sont conçus pour offrir une expérience 
-                simple et rapide. Choisissez vos nouilles, effectuez votre paiement 
-                et profitez de votre repas en quelques minutes.
+                {t('products.sectionDesc')}
               </p>
               <div className="space-y-6 pt-4">
-                {[
-                  { title: 'Interface Tactile Simple', desc: 'Sélection facile et intuitive' },
-                  { title: 'Paiement Sans Contact', desc: 'Cartes et paiements mobiles acceptés' },
-                  { title: 'Eau Chaude Incluse', desc: 'Tout ce dont vous avez besoin sur place' },
-                  { title: 'Entretien Régulier', desc: 'Machines maintenues et réapprovisionnées' }
-                ].map((item, index) => (
+                {machineFeatures.map((item, index) => (
                   <motion.div 
                     key={index} 
                     className="flex items-start group"
@@ -179,13 +146,13 @@ export function Products() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-yellow-50 text-yellow-700 px-5 py-2.5 rounded-full font-semibold">
-              Nos Produits
+              {t('products.productsBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Une Sélection <span className="text-red-600">Variée</span>
+              {t('products.productsTitle')} <span className="text-red-600">{t('products.productsTitle2')}</span>
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Des nouilles instantanées pour tous les goûts
+              {t('products.productsSubtitle')}
             </p>
           </motion.div>
 
@@ -229,13 +196,13 @@ export function Products() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-semibold">
-              Caractéristiques
+              {t('products.specsBadge')}
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              Conçu Pour <span className="text-red-600">Vous</span>
+              {t('products.specsTitle')} <span className="text-red-600">{t('products.specsTitle2')}</span>
             </h2>
             <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Nos machines sont équipées pour vous offrir la meilleure expérience
+              {t('products.specsSubtitle')}
             </p>
           </motion.div>
 
@@ -275,16 +242,16 @@ export function Products() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Intéressé par Notre Service ?
+            {t('products.ctaTitle')}
           </h2>
           <p className="text-xl sm:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed">
-            Nous installons des distributeurs dans des lieux stratégiques. Contactez-nous pour en savoir plus.
+            {t('products.ctaSubtitle')}
           </p>
           <Link
             to="/contact"
             className="inline-block bg-white text-red-600 px-12 py-6 rounded-xl hover:bg-gray-50 transition-all text-xl font-bold shadow-2xl hover:-translate-y-1"
           >
-            Demander un Service
+            {t('products.ctaButton')}
           </Link>
         </motion.div>
       </section>
