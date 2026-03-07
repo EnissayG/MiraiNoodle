@@ -9,8 +9,11 @@ export function Contact() {
     phone: '',
     subject: '',
     message: '',
+    'bot-field': '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -19,21 +22,43 @@ export function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulaire soumis:', formData);
-    setSubmitted(true);
-    
-    setTimeout(() => {
-      setSubmitted(false);
+    setError(null);
+    setSubmitting(true);
+
+    const payload = new URLSearchParams({
+      'form-name': 'contact',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
+      ...(formData['bot-field'] && { 'bot-field': formData['bot-field'] }),
+    });
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString(),
+      });
+      if (!res.ok) throw new Error('Erreur lors de l\'envoi');
+      setSubmitted(true);
       setFormData({
         name: '',
         email: '',
         phone: '',
         subject: '',
         message: '',
+        'bot-field': '',
       });
-    }, 3000);
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const faqs = [
@@ -218,7 +243,25 @@ export function Contact() {
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-8">
+                  <form
+                    onSubmit={handleSubmit}
+                    name="contact"
+                    method="post"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    className="space-y-8"
+                  >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden" aria-hidden="true">
+                      <label>
+                        Ne pas remplir : <input name="bot-field" value={formData['bot-field']} onChange={handleChange} />
+                      </label>
+                    </p>
+                    {error && (
+                      <div className="bg-red-50 border-2 border-red-500 rounded-xl px-6 py-4 text-red-700 font-medium">
+                        {error}
+                      </div>
+                    )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
                         <label htmlFor="name" className="block font-bold text-gray-700 mb-3 text-lg">
@@ -309,9 +352,10 @@ export function Contact() {
 
                     <button
                       type="submit"
-                      className="w-full bg-red-600 text-white py-6 rounded-xl hover:bg-red-700 transition-all text-xl font-bold shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 flex items-center justify-center space-x-3 hover:-translate-y-0.5"
+                      disabled={submitting}
+                      className="w-full bg-red-600 text-white py-6 rounded-xl hover:bg-red-700 transition-all text-xl font-bold shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40 flex items-center justify-center space-x-3 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                     >
-                      <span>Envoyer le Message</span>
+                      <span>{submitting ? 'Envoi en cours...' : 'Envoyer le Message'}</span>
                       <Send className="w-6 h-6" />
                     </button>
 

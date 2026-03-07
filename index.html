@@ -9,6 +9,15 @@
 
     <body>
       <div id="root"></div>
+      <!-- Hidden form for Netlify Forms (SPA): same name/fields so Netlify detects it at build -->
+      <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <input type="text" name="subject" />
+        <textarea name="message"></textarea>
+        <input type="text" name="bot-field" />
+      </form>
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
