@@ -31,7 +31,7 @@ export function Home() {
             playsInline
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
-            src="https://res.cloudinary.com/dkdllswlj/video/upload/_users_427e3900-721d-4f47-af2a-8b32a1409660_generated_a770ece7-5cb3-4ae6-8d88-db2f37971d50_generated_video_ste0fi.mp4"
+            src="https://res.cloudinary.com/dkdllswlj/video/upload/v1773352494/f2711e5ad4504fff8a618aa9e12dddf7_eekhua.mov"
           />
 
           {/* Overlay gradient */}
