@@ -2,11 +2,26 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Zap, Clock, Utensils, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
 import logo from '../../assets/logo.png';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function Home() {
   const { t } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise.catch(() => {
+      
+      });
+    }
+  }, []);
   const features = [
     { icon: <Zap className="w-10 h-10 text-red-600" />, title: t('home.feature1Title'), description: t('home.feature1Desc') },
     { icon: <Clock className="w-10 h-10 text-red-600" />, title: t('home.feature2Title'), description: t('home.feature2Desc') },
@@ -25,6 +40,7 @@ export function Home() {
         {/* Video Background from Cloudinary, covering full area */}
         <div className="absolute inset-0 overflow-hidden">
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
