@@ -47,7 +47,7 @@ export function Home() {
             playsInline
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
-            src="https://res.cloudinary.com/dkdllswlj/video/upload/v1773374319/Sequence_01_7_gkatwh.mp4"
+            src="https://res.cloudinary.com/dkdllswlj/video/upload/v1774223285/miraihero_a56mtk.mp4"
           />
 
           {/* Overlay gradient */}
