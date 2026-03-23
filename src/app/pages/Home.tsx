@@ -63,23 +63,6 @@ export function Home() {
         >
           <img src={logo} alt="Mirai Ramen" className="h-28 sm:h-32 lg:h-36 w-auto" />
         </motion.div>
-        
-        {/* Texte au Centre */}
-        <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center px-6 space-y-8 w-full max-w-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-        >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-white">
-            {t('home.heroTitle1')}
-            <span className="block text-red-600 mt-3">{t('home.heroTitle2')}</span>
-            <span className="block text-yellow-400 mt-3">{t('home.heroTitle3')}</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed max-w-xl mx-auto">
-            {t('home.heroSubtitle')}
-          </p>
-        </motion.div>
       </section>
 
       {/* Wave Separator */}
