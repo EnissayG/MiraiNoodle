@@ -14,7 +14,7 @@ export function Footer() {
             <img
               src={logo}
               alt="Mirai Ramen"
-              className="h-14 sm:h-16 w-auto max-w-full object-contain object-left mb-6"
+              className="h-16 sm:h-[4.75rem] w-auto max-w-full object-contain object-left mb-6"
               loading="lazy"
               decoding="async"
             />
