@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import logo from '../../assets/logo.png';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function Navigation() {
@@ -29,9 +30,22 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-transparent text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-end items-center h-20">
+        <div className="flex justify-between items-center h-20 gap-4 w-full">
+          <Link
+            to="/"
+            onClick={handleLinkClick}
+            className="shrink-0 flex items-center py-1 -ml-1 sm:ml-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-md"
+          >
+            <img
+              src={logo}
+              alt="Mirai Ramen"
+              className="h-9 sm:h-10 md:h-11 w-auto max-w-[min(62vw,290px)] md:max-w-[min(40vw,360px)] object-contain object-left drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]"
+              decoding="async"
+            />
+          </Link>
+
           {/* Language switcher + Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3 shrink-0">
             <div className="flex rounded-lg overflow-hidden border border-white/20 bg-white/5">
               {(['fr', 'en'] as const).map((lang) => (
                 <button
@@ -63,9 +77,9 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Mobile Menu Button (hamburger) - transparent, white icon */}
+          {/* Mobile Menu Button (hamburger) */}
           <button
-            className="md:hidden p-2 text-white drop-shadow-[0_0_6px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
+            className="md:hidden p-2 shrink-0 text-white drop-shadow-[0_0_6px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={t('nav.toggleMenu')}
           >

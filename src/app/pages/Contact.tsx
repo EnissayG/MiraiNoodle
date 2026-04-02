@@ -163,8 +163,12 @@ export function Contact() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-black mb-2 text-xl">{t('contact.email')}</h3>
-                      <p className="text-gray-600 text-lg break-all">info@mirairamen.com</p>
-                      <p className="text-gray-600 text-lg break-all">support@mirairamen.com</p>
+                      <a
+                        href="mailto:sales@mirairamen.com"
+                        className="text-gray-600 text-lg break-all hover:text-red-600 transition-colors"
+                      >
+                        sales@mirairamen.com
+                      </a>
                     </div>
                   </div>
                 </motion.div>

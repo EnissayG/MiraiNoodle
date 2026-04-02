@@ -3,7 +3,6 @@ import { Zap, Clock, Utensils, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { useEffect, useRef } from 'react';
-import logo from '../../assets/logo.png';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function Home() {
@@ -53,22 +52,6 @@ export function Home() {
           {/* Overlay gradient */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/70" />
         </div>
-        
-        {/* Logo centré, un peu plus bas qu’avant pour dégager la nav */}
-        <motion.div 
-          className="absolute z-10 left-1/2 -translate-x-1/2 top-16 sm:top-20 md:top-24"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <img
-            src={logo}
-            alt="Mirai Ramen"
-            className="h-28 sm:h-32 lg:h-36 w-auto max-w-[min(100vw-2rem,320px)] object-contain object-center drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
-            loading="eager"
-            decoding="async"
-          />
-        </motion.div>
       </section>
 
       {/* Wave Separator */}

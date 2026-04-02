@@ -14,7 +14,7 @@ export function Footer() {
             <img
               src={logo}
               alt="Mirai Ramen"
-              className="h-12 w-auto max-w-full object-contain object-center mb-6"
+              className="h-14 sm:h-16 w-auto max-w-full object-contain object-left mb-6"
               loading="lazy"
               decoding="async"
             />
@@ -64,7 +64,9 @@ export function Footer() {
               </li>
               <li className="flex items-start space-x-3 text-gray-400 group hover:text-white transition-colors">
                 <Mail size={20} className="text-red-600 mt-0.5 flex-shrink-0" />
-                <span className="text-lg">info@mirairamen.com</span>
+                <a href="mailto:sales@mirairamen.com" className="text-lg hover:text-red-400 transition-colors">
+                  sales@mirairamen.com
+                </a>
               </li>
               <li className="flex items-start space-x-3 text-gray-400 group hover:text-white transition-colors">
                 <MapPin size={20} className="text-red-600 mt-0.5 flex-shrink-0" />
