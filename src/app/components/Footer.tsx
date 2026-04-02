@@ -11,7 +11,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {/* Company Info */}
           <div>
-            <img src={logo} alt="Mirai Ramen" className="h-12 w-auto mb-6" />
+            <img
+              src={logo}
+              alt="Mirai Ramen"
+              className="h-12 w-auto max-w-full object-contain object-center mb-6"
+              loading="lazy"
+              decoding="async"
+            />
             <p className="text-gray-400 leading-relaxed text-lg">
               {t('footer.tagline')}
             </p>
